@@ -6,6 +6,7 @@ const MentorList = ({ mentors }) => {
 	if (mentors.length === 0) {
 		return (<p>Loading...</p>)
 	}
+	console.log(mentors);
 
 	const mentorElements = mentors.map((mentor, index) => {
 		return (

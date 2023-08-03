@@ -12,7 +12,7 @@ const Mentor = ({ mentor }) => {
     <Fragment>
       <p>
         <Link to={url} className="name">
-          {mentor.fullName}
+          {mentor.name}
         </Link>
       </p>
       <p>Email: {mentor.email}</p>

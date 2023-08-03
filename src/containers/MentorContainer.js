@@ -13,7 +13,7 @@ const MentorContainer = () => {
 
   useEffect(() => {
     const request = new Request();
-    const mentorPromise = request.get('/mentors');
+    const mentorPromise = request.get('/api/mentors');
     const menteePromise = [];
 
     Promise.all([mentorPromise, menteePromise])

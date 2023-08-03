@@ -41,7 +41,7 @@ const MentorForm = ({ mentees, onCreate }) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Full Name" name="fullName" onChange={handleChange} value={stateMentor.fullName} />
+                <input type="text" placeholder="Full Name" name="name" onChange={handleChange} value={stateMentor.name} />
                 <input type="text" placeholder="Email" name="email" onChange={handleChange} value={stateMentor.email} />
                 <input type="bio" placeholder="Bio" name="bio" onChange={handleChange} value={stateMentor.bio} />
                 {/* <select name="mentee" onChange={handleMentee} defaultValue="select-mentee">
