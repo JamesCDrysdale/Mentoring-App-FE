@@ -9,15 +9,15 @@ const Mentor = ({ mentor }) => {
   }
   const url = "/mentors/" + mentor.id;
   return (
-    <Fragment>
-      <p>
+    <>
+      <h2>
         <Link to={url} className="name">
           {mentor.name}
         </Link>
-      </p>
+      </h2>
       <p>Email: {mentor.email}</p>
-      <p>Bio: {mentor.bio}</p>
-    </Fragment>
+      <p>LinkedIn: <a href={`https://www.linkedin.com${mentor.linkedIn}`}>{mentor.linkedIn}</a></p><p>Bio: {mentor.bio}</p>
+    </>
   )
 }
 

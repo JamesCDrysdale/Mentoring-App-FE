@@ -6,7 +6,8 @@ const MentorDetail = ({ mentor, handleDelete }) => {
     if (mentor) {
 
         const mentorsMentees = mentor.mentees.map((mentee, index) => {
-            return <li key={index}>{mentee.fullName}</li>
+            console.log(mentee);
+            return <li key={index}><a href={`/mentees/${mentee.id}`}>{mentee.name}</a></li>
         })
 
         const onDelete = () => {

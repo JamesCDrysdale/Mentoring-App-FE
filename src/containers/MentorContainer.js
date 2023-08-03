@@ -36,13 +36,20 @@ const MentorContainer = () => {
   };
 
   const handleDelete = (id) => {
-    // TODO: use API to delete by ID
-    window.location = '/mentors';
+    const request = new Request();
+    const url = '/api/mentors/' + id;
+
+    request.delete(url).then(() => {
+      window.location = '/mentors';
+    })
   }
 
   const handlePost = (mentor) => {
-    // TODO: use API to create mentor
-    window.location = '/mentors'
+    const request = new Request();
+
+    request.post('/api/mentors', mentor).then(() => {
+        window.location = '/mentors'
+    })
   };
 
   return (
