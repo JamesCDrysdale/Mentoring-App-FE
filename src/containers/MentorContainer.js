@@ -5,11 +5,12 @@ import Request from '../helpers/request';
 import MentorList from '../components/mentors/MentorList';
 import MentorDetail from '../components/mentors/MentorDetail';
 import MentorForm from '../components/mentors/MentorForm';
+import EditMentorForm from '../components/mentors/EditMentorForm';
 
 const MentorContainer = () => {
 
   const [mentors, setMentors] = useState([])
-//   const [mentees, setMentees] = useState([])
+  const [mentees, setMentees] = useState([])
 
   useEffect(() => {
     const request = new Request();
@@ -19,7 +20,7 @@ const MentorContainer = () => {
     Promise.all([mentorPromise, menteePromise])
       .then((data) => {
         setMentors(data[0])
-        // setMentees(data[1])
+        setMentees(data[1])
       })
   }, [])
 
@@ -52,14 +53,33 @@ const MentorContainer = () => {
     })
   };
 
+  const EditMentorFormWrapper = () => {
+        const { id } = useParams();
+        let foundMentor = findMentorById(id);
+    
+        return <EditMentorForm mentees={mentees} mentor={foundMentor} onEdit={handlePut} />;
+    }
+
+    const handlePut = (mentor) => {
+        const request = new Request();
+
+        request.put(`/api/mentors/${mentor.id}`, mentor).then(() => {
+            window.location = '/mentors'
+        })
+    }
+
   return (
     <Routes>
       <Route path="/new" element={
         <MentorForm onCreate={handlePost} />
       } />
+
+      <Route path="/:id/edit" element={ <EditMentorFormWrapper /> } />
+
       <Route path="/:id" element={
         <MentorDetailWrapper />
       } />
+
       <Route path="/" element={<MentorList mentors={mentors} />} />
     </Routes>
   )

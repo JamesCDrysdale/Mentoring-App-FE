@@ -4,9 +4,10 @@ const MentorForm = ({ mentees, onCreate }) => {
 
     const [stateMentor, setStateMentor] = useState(
         {
-            fullName: "",
-            bio: "",
+            name: "",
             email: "",
+            linkedIn: "",
+            bio: ""
         }
     )
 

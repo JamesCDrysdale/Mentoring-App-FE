@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';  
+
 import Mentor from "./Mentor";
 
 const MentorDetail = ({ mentor, handleDelete }) => {
+    const navigate = useNavigate();
 
     if (mentor) {
 
@@ -14,6 +17,10 @@ const MentorDetail = ({ mentor, handleDelete }) => {
             handleDelete(mentor.id)
         }
 
+        const onEdit = () => {
+        navigate(`/mentors/${mentor.id}/edit`);
+    }
+
         return (
             <div className="component">
                 <Mentor mentor={mentor} />
@@ -21,7 +28,8 @@ const MentorDetail = ({ mentor, handleDelete }) => {
                 <ul>
                     {mentorsMentees}
                 </ul>
-                <button onClick={onDelete}>Delete {mentor.fullName}</button>
+                <button onClick={onDelete}>Delete {mentor.name}</button>
+                <button onClick={onEdit}>Edit</button>
             </div>
         )
     }

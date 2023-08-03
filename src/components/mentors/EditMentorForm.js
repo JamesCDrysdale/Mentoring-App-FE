@@ -1,0 +1,63 @@
+import React, { useState } from 'react';
+
+const EditMentorForm = ({ mentor, mentees, onEdit }) => {
+    
+
+    const [stateMentor, setStateMentor] = useState(
+        {
+            id: mentor.id,
+            name: mentor.name,
+            email: mentor.email,
+            linkedin: mentor.linkedIn,
+            bio: mentor.bio
+        }
+    )
+
+    console.log(mentor);
+
+    if (!mentor) {
+        return <p>Loading...</p>
+    }
+
+    const handleChange = function (event) {
+        let propertyName = event.target.name;
+        let copiedMentor = { ...stateMentor }
+        copiedMentor[propertyName] = event.target.value;
+        setStateMentor(copiedMentor)
+    }
+
+    // const handleMentee = function (event) {
+    //     const selectedMentee = mentees.find(mentee => mentee.id === event.target.value);
+    //     let copiedMentor = { ...stateMentor };
+    //     copiedMentor['mentee'] = selectedMentee
+    //     setStateMentor(copiedMentor)
+    // }
+
+    const handleSubmit = function (event) {
+        event.preventDefault();
+        onEdit(stateMentor);
+    }
+
+    // const menteeOptions = mentees.map((mentee, index) => {
+    //     return <option key={index} value={mentee.id}>{mentee.name}</option>
+    // })
+
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="Full Name" name="name" onChange={handleChange} value={stateMentor.name} />
+                <input type="email" placeholder="Email" name="email" onChange={handleChange} value={stateMentor.email} />
+                <input type="text" placeholder="LinkedIn" name="linkedIn" onChange={handleChange} value={stateMentor.linkedin} />
+                {/* <select name="mentee" onChange={handleMentee} defaultValue={mentor.mentee.id}>
+                    <option disabled value='select-mentee'>Select a mentee</option>
+                    {menteeOptions}
+                </select> */}
+
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    )
+
+}
+
+export default EditMentorForm;
